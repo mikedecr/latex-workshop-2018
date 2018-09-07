@@ -1,41 +1,87 @@
 \documentclass[12pt]{article}
 
-\usepackage[margin = 1in]{geometry}
+% --- document setup and text -----------------------
 
-\usepackage{amsfonts, amsmath, amssymb}
-\usepackage{dcolumn, multirow, multicol}
-\usepackage{todonotes}
-\usepackage{graphicx}
-\usepackage{setspace}
-% \usepackage{caption}
-\usepackage{rotating}
-\usepackage{booktabs}
-\usepackage{hyperref}
+% document class defines document-wide parameters. 
+% You will probably use ``article'' for everything but posters and slides
+
+\usepackage[margin = 1in]{geometry} % controls page margins
+\usepackage{setspace}               % controls line spacing
 
 \usepackage{parskip}
+% ``parskip'' is used to get (a) space between paragraphs and
+% (b) no indentation at new paragraphs.
+% This makes this particular document easier to read, 
+% but I do NOT recommend using parskip ordinarily
+% (except for problem sets maybe)
+                     
 
-% controls the appearance of the code blocks
-% this is for aesthetics only, not essential for LaTeX
+% --- math things -----------------------
+
+\usepackage{amsmath} % commonly used for enhanced math commands
+\usepackage{amssymb} % commonly used for helpful symbols and fonts
+                     % many people also load ``amsfonts''
+                     % but amssymb loads amsfonts, so it's not necessary
+
+
+
+% --- tables, figues, other floats -----------------------
+
+\usepackage{float}    % float parameters
+
+% graphics:
+\usepackage{graphicx} % capabilites for inserting graphics
+\usepackage{rotating} % if you want sideways graphics
+\usepackage{subcaption} % if you want sub-figures
+% \usepackage{placeins} 
+%   ``placeins'' contains a helpful \FloatBarrier command
+%   which prevents figures from bleeding across sections
+
+
+% tables
+\usepackage{booktabs} % commonly used to make tables prettier
+\usepackage{dcolumn} % aligns table column text along a decimal pt
+\usepackage{multirow, multicol} % cells spanning multi rows/cols
+
+
+
+% --- other document logic/capabilities -----------------------
+
+\usepackage{hyperref}  % hyperlinks
+\usepackage{xcolor}    % more colors (don't go too crazy)
+\usepackage{todonotes} % print yourself to-do notes
+
+
+
+% --- fancy code blocks -----------------------
+
+% WARNING to workshop participants:
+% These ``listings'' settings are included to make code blocks prettier,
+% but ``listings'' is not essential unless you want to include code
+% which should be rare unless you're describing computer algorithms.
+% I would NOT paste these settings into your future work.
+
+% If you're interested in printing code, you might also check out ``minted''.
+% Minted prints prettier code blocks, 
+% but it depends on pygments (http://pygments.org/) which can be a pain
+
 \usepackage{listings}
+
 \definecolor{lgray}{gray}{0.925}
 
 \lstset{ 
   backgroundcolor = \color{lgray},
-  basicstyle = \small \ttfamily,  % code style
-  breakatwhitespace = true,  % if automatic break only happen at whitespace
-  breaklines = false,        % automatic line breaking
-  columns=fullflexible,      % kerning thing
-  commentstyle = \color{gray},    % comment style
-  escapeinside = {\%*}{*)},     % for using LaTeX within code
-  % frame = single,              % code block border
-  keepspaces = true,   % keeps spaces for indentation (needs columns = flexible)
-  language = TeX,                 % the language of the code
-  % morekeywords = {*,...},            % if you want to add more keywords to the set
-  % rulecolor = \color{gray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showstringspaces = false,          % underline spaces within strings only
-  % show tabs within strings adding particular underscores
-  % showtabs = false,
-  tabsize = 2,                    % sets default tabsize to 2 spaces
+  basicstyle = \ttfamily, % code style
+  breakatwhitespace = true,      % if automatic break only happen at whitespace
+  breaklines = false,            % automatic line breaking
+  columns=fullflexible,          % kerning thing
+  commentstyle = \color{gray},   % comment style
+  escapeinside = {\% *}{*)},     % for using LaTeX within code
+  keepspaces = true,             % keeps spaces for indentation 
+                                 % (needs columns = flexible ?)
+  language = TeX,                % the language of the code
+  % morekeywords = {*,...},        % for adding more keywords
+  showstringspaces = false      % underline spaces within strings only
 }
 
 
@@ -46,15 +92,13 @@
 
 \title{{\LaTeX} Starter Guide}
 \author{Michael DeCrescenzo%
-        \thanks{Ph.D.\ Candidate, Political Science, University of Wisconsin--Madison. This handout borrows heavily past workshop materials created and passed down by Matthew Holleque, Sarah Niebler, and Dave Ohls, Sarah Bouchat, Nat Olin, Richard Loeza, and Jos\'e Luis Enr\'iquez Chi\~nas, and Michael Masterson.} \\ 
-        Ph.D. Candidate, Political Science \\ 
-        University of Wisconsin--Madison}
+          \thanks{Ph.D.\ Candidate, Political Science, University of Wisconsin--Madison. This handout borrows heavily past workshop materials created and passed down by Matthew Holleque, Sarah Niebler, and Dave Ohls, Sarah Bouchat, Nat Olin, Richard Loeza, and Jos\'e Luis Enr\'iquez Chi\~nas, and Michael Masterson.}}
 \date{Updated \today}
 \maketitle
 
 
 \begin{abstract}
-  This document describes and exemplifies many important {\LaTeX} concepts and practices. It discusses document setup, important commands and environments, text formatting, math, figures and tables, and so on. This document (a \lstinline{.pdf} file) is distributed alongside the source code used to create it (a \lstinline{.tex} format), allowing new {\LaTeX} users to see how {\LaTeX} code becomes printed content. More materials are available on the workshop's Github repository.%
+  This document describes and exemplifies many important {\LaTeX} concepts and best-practices. It discusses document setup, important commands and environments, text formatting, math, figures and tables, and so on. This document (a \lstinline{.pdf} file) is distributed alongside the source code used to create it (a \lstinline{.tex} file), allowing new {\LaTeX} users to see how {\LaTeX} code becomes printed content. The source code, along with other workshop materials, can be found on the workshop's Github page.%
     \footnote{\url{https://github.com/mikedecr/latex-workshop-2018}}
 \end{abstract}
 
@@ -62,10 +106,10 @@
 
 \section{How to read this document}
 
-This document walks through a number of {\LaTeX} concepts and examples. Examples of {\LaTeX} will appear in the text throughout the document. Code appears in the text with a \lstinline{monospace} font.
+This document is intended to teach {\LaTeX} by example. The text contains a discussion of {\LaTeX} commands, but for instructional purposes it will also be valuable to download, inspect, and modify the source code%
+  \footnote{I advise that you preserve an original copy of the source code, for future reference. The file can be copied from here: \url{https://raw.githubusercontent.com/mikedecr/latex-workshop-2018/master/handout/latex-handout-2018.tex}} yourself. 
 
-If we want to view a lot of code at once, we will place the code into a code block. Code blocks are styled to make them easier to read. 
-
+Examples of {\LaTeX} code will appear in the text. These examples are printed with a \lstinline{monospace} font. If we want to view a lot of code at once, we will see code presented in a code block. Code blocks are styled to make them easier to read:
 
 \begin{lstlisting}
   This is where
@@ -74,9 +118,21 @@ If we want to view a lot of code at once, we will place the code into a code blo
   would be written at once
 \end{lstlisting}
 
+It is important to distinguish the code that builds the document from the example code that is printed in the final document. The code that builds the document isn't directly visible to you---it is interpreted by the {\TeX} compilation engine to create the final document. The example code that appears in the final text is simply printed, not executed.%
+  \footnote{We discuss how to print code without executing it later in this document.}
+
 
 
 \section{Essentials}
+
+{\LaTeX} works like this. 
+\begin{enumerate}
+  \item \textbf{Source code.} You start with a plain text file (with a \lstinline{.tex} extension), which serves as the source code for your final document. The source contains the text of your document (unstyled) and code to ``mark up'' the text. The markup code provides logical structure and stylistic guidelines for the text to follow. 
+  \item \textbf{Compilation.} The source code is compiled by the {\TeX} engine. The engine interprets the markup code to learn which text serves what purpose, and it follows those instructions to build the final document. The compilation process runs into errors if the compiler can't interpret the source file.
+  \item \textbf{Output.} Successful compilation returns an output document, usually a \lstinline{pdf} file (usually a \emph{pretty} \lstinline{pdf} file).
+\end{enumerate}
+
+
 
 {\LaTeX} ``source'' documents are \lstinline{.tex} files. 
 
