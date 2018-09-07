@@ -2,6 +2,16 @@
 .DS_Store
 
 
+## ---- rmd -----
+
+*cache/
+
+
+
+
+
+
+## ---- latex things ---------------
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
