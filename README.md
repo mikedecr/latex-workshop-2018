@@ -27,7 +27,7 @@ The `.gitignore` and `readme` files are not essential for end-users. They are me
 Description of these documents:
 
 - `slides`: slideshows from day 1
-- `hangout`: a detailed document describing many LaTeX commands
+- `handout`: a detailed document describing many LaTeX commands
 - `mgd-preamble`: an empty document featuring many of my most-used packages and settings
 - `bib`: slideshow and example documents about bibliographies
 - `tikz`: a document describing ways to draw charts in LaTeX
