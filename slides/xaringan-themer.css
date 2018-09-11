@@ -24,7 +24,7 @@
 body {
   font-family: PT Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
   font-weight: ;
-  color: #001E25;
+  color: #272822;
 }
 h1, h2, h3 {
   font-family: Crimson Text;
@@ -32,7 +32,7 @@ h1, h2, h3 {
   color: #002b36;
 }
 .remark-slide-content {
-  background-color: #E5E9EA;
+  background-color: #FFFFFF;
   font-size: 20px;
   
   
@@ -67,7 +67,7 @@ h1, h2, h3 {
 }
 strong{color:#002b36;}
 a, a > code {
-  color: #002b36;
+  color: #2aa198;
   text-decoration: none;
 }
 .footnote {
@@ -82,14 +82,14 @@ a, a > code {
 }
 .inverse {
   background-color: #002b36;
-  color: #E5E9EA;
+  color: #FFFFFF;
   
 }
 .inverse h1, .inverse h2, .inverse h3 {
-  color: #E5E9EA;
+  color: #FFFFFF;
 }
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
-  color: #E5E9EA;
+  color: #FFFFFF;
 }
 .title-slide {
   background-color: #002b36;
@@ -144,11 +144,11 @@ table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 thead, tfoot, tr:nth-child(even) { background: white }
 table.dataTable tbody {
-  background-color: #E5E9EA;
-  color: #001E25;
+  background-color: #FFFFFF;
+  color: #272822;
 }
 table.dataTable.display tbody tr.odd {
-  background-color: #E5E9EA;
+  background-color: #FFFFFF;
 }
 table.dataTable.display tbody tr.even {
   background-color: white;
@@ -157,10 +157,10 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-  color: #001E25;
+  color: #272822;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #001E25 !important;
+  color: #272822 !important;
 }
 
 @page { margin: 0; }
