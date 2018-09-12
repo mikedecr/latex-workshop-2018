@@ -1,5 +1,5 @@
 ---
-title: "LaTeX Workshop"
+title: "$\\LaTeX$ Workshop"
 subtitle: "UW--Madison Political Science"
 author: "Michael DeCrescenzo"
 date: "September 12, 2018"
@@ -14,9 +14,18 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "https://platform.twitter.com/widgets.js"
+    seal: false
 ---
 
+class: center, middle, inverse, title-slide
 
+# $\mathrm{\LaTeX}$ Workshop
+
+### Michael DeCrescenzo
+
+### September 12, 2018
+
+---
 ```{r setup, include = FALSE, cache = TRUE}
 # chunks:
 # hide code and messages
