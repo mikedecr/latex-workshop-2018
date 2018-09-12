@@ -1,0 +1,84 @@
+# Day 1
+
+Slides (hurry)
+
+Hello, world
+
+- TeXMaker
+- class
+- environment
+- hello
+- build
+  + build files
+  + output directory?
+
+Handout
+
+- packages
+- title (do it ourselves)
+- sections
+- margins
+- spacing
+- comments
+- just point out:
+  + footnotes
+  + lists
+  + typeface, size, style
+- quote marks
+- hyphens
+- point out:
+  + special characters
+- Floats
+  + tell them to read this carefully
+  + include graphics, set width of figure 
+    * (6in width in R is good, try to match the text size)
+  + table example
+
+
+Reiteration of philosophy
+
+- content control, not stylistic intervention
+  + if intervention, make it global
+  + avoid bloat
+  + tex is verbose enough
+- workflow integration
+  + statistical output (tables, figures)
+  + save quantities (stats, p-values)
+
+
+Next week transition
+
+- workflow details are next week
+- also beamer and bibliographies
+- content control is more than TeX
+  + Rmd, integrate your paper and your analysis
+  + slideshows that run on R-Markdown (beamer sucks!)
+
+
+
+
+# Workflow contents
+
+- bibliographies
+- figures
+- tables
+- referenced quantities
+
+
+# Beamer
+
+Don't spend too much time here
+
+- it's a document class
+- options for changing style and colors (look those up)
+- frames, `only<x-y>`
+- the rest is just tex
+
+
+# Rmd
+
+- Same as workflow but in Rmd
+- links to other Rmd references
+  + code chunks
+  + cites
+  + referenced quantities
