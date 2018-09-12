@@ -1,0 +1,159 @@
+% ---------------------------------------------
+%  describe document
+% ---------------------------------------------
+
+\documentclass[12pt
+               % , final
+              ]{article}
+
+
+
+% --- type, text, math, in/out encoding -----------------------
+\usepackage{microtype}
+
+% minion pro loads textcomp, MnSymbol, amsmath
+% if you want to pass options, load them beforehand
+\usepackage[lf, mathtabular, minionint]{MinionPro} % serif familiy
+\usepackage{MyriadPro} % sans-serif family
+% \usepackage{zi4}
+
+% if minion and/or myriad fail, load these
+% \usepackage{mathptmx} % serif = times (with math)
+% \usepackage{helvet} % sens-serif = helvetica clone
+
+\usepackage[utf8]{inputenc} % better interpretation of input characters
+\usepackage[T1]{fontenc}    % better output glyphs/behaviors
+
+
+% --- Margins and Spacing -----------------------
+
+\usepackage[margin = 1.25in]{geometry} %margins % ipad geometry is 4X3
+\usepackage{setspace}
+\usepackage{enumitem} % allows nosep option for compact lists
+
+
+% --- tables and figures -----------------------
+
+\usepackage{graphicx} % input graphics
+\usepackage{float} % only good for H float option?
+\usepackage{placeins} % for \FloatBarrier
+\usepackage{booktabs} %? for toprule, midrule etc
+\usepackage{dcolumn} % decimal-aligned columns
+
+
+
+% --- document logic and utilities -----------------------
+
+% hyperlink options
+\usepackage{hyperref} 
+\hypersetup{colorlinks = true, 
+            citecolor = black, linkcolor = violet, urlcolor = teal}
+
+% to-do notes
+\usepackage[colorinlistoftodos, 
+            prependcaption, 
+            obeyFinal,
+            textsize = footnotesize]{todonotes}
+  \presetkeys{todonotes}{fancyline, color = violet!30}{}
+
+\usepackage{comment} % block comments
+
+
+
+
+
+% --- References -----------------------
+
+\usepackage[authordate, backend = biber]{biblatex-chicago}
+\addbibresource{/Users/michaeldecrescenzo/Dropbox/bib.bib}
+
+
+
+% --- global title/section formatting -----------------------
+
+% \usepackage{titling}
+% we used to have title customization stuff but it's noisy
+
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+
+\usepackage[rm, small, sc]{titlesec}
+\titleformat*{\subsection}{\itshape}
+\titleformat*{\paragraph}{\itshape}
+
+
+
+% --- user commands -----------------------
+
+% notes for figures
+\newcommand{\notes}[1]{\hfill \\
+% \raggedright 
+\small
+\emph{Notes:} #1}
+
+% input with unskip as one command
+\newcommand{\pull}[1]{\input{#1}\unskip}
+
+
+
+
+
+
+
+
+% ----------------------------------------------------
+%   writing
+% ----------------------------------------------------
+
+
+\begin{document}
+
+
+\title{Blank Template for Papers}
+\author{Michael G.\ DeCrescenzo%
+          \thanks{Ph.D.\ Candidate, University of Wisconsin--Madison. The author thanks the haters.}}
+\date{Updated \today}
+\maketitle
+
+
+\begin{abstract}
+  Abstract for a paper about some stuff. We took away the abstract title because it isn't necessary. For the text block, we use microtype, wider margins than one-inch, 1.5x line spacing. Type styles use the Minion and Myriad families (which will probably fail on most computers, sike!), and a font identity that uses no bolding---the only text decoration is small capitals and italics. We don't need huge section titles either, so we shrink 'em.
+\end{abstract}
+
+\vspace{12pt}
+
+
+\onehalfspacing
+
+
+\section*{Introduction}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\subsection*{Elaboration on a finer point}
+
+Let's say we wanted to write some pretty math. Let's say we really thought item response theory (IRT) models were beautiful, and we were to write one flavor of IRT model:
+
+\begin{align}
+  \mathrm{Pr}\left( y_{ij} = 1 \right)
+  &=
+  \Phi \left[
+    \beta_{j} \left( \theta_{i} - \alpha_{j} \right)
+  \right] \\
+  \theta_{i} &\sim \mathrm{Normal}\left(\bar{\theta}_{g[i]}, \sigma_{g[i]} \right)
+\end{align}
+
+
+
+\newpage
+\printbibliography
+
+
+\end{document}
