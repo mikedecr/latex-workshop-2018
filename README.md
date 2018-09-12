@@ -30,7 +30,7 @@ Description of these documents:
 
 - `slides`: slideshows from day 1
 - `handout`: a detailed document describing many LaTeX commands
-- `mgd-preamble`: an empty document featuring many of my most-used packages and settings
+- `mgd-template`: an empty document featuring many of my most-used packages and settings
 
 ## Week 2
 
