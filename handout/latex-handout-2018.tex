@@ -332,7 +332,7 @@ To obtain a paragraph style like the one used for this current document (which c
 
 The \lstinline{comment} package provides a comment environment. This works like a ``block comment,'' allowing you to comment large chunks of text with ease. I have found this package to be quite handy when writing and revising papers.
 
-Bonus: the \lstinline{todonotes} package also provides cool way to leave notes to yourself in a document using \lstinline+\todo{insert note}+ or \lstinline+\todo[inline]{insert note}+. \todo{Margin note} \todo[inline]{Inline note}
+Bonus: the \lstinline{todonotes} package also provides cool way to leave notes to yourself in a document using \lstinline+\todo{insert note}+ or \lstinline+\todo[inline]{insert note}+. \todo{note here} \todo[inline]{Inline note}
   
 
 
@@ -584,7 +584,9 @@ Some {\LaTeX} editors are smart and can be customized to intelligently insert {\
 
   \# \$ \% \& \_ $\grave{}$ \{ \} $\tilde{}$  \textbackslash 
 
+% temporary turn off lstset language to get comments to appear well
 \lstset{language = }
+
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
   \# \$ \% \& \_ $\grave{}$ \{ \} $\tilde{}$  \textbackslash 
@@ -598,6 +600,8 @@ Some {\LaTeX} editors are smart and can be customized to intelligently insert {\
   \$300 is 50\% of my take-home pay.
 \end{lstlisting}
 \end{minipage}
+
+% turn language back on
 \lstset{language = TeX}
 
 Some of these special characters affect the characters immediately after them. For example, my old roommate (Jos\'e Luis Enr\'iquez Chi\~nas) must have a difficult type {\TeX}ing his name:
@@ -638,13 +642,15 @@ Graphic capabilities are enhanced by including the \lstinline{graphicx} package.
 
 The fundamental component of including a graphic or figure is the \lstinline+\includegraphics{path}+ command, where \lstinline{path} is the relative path to an image file. 
 
-Specify the size of the image using height or width. Here, the command\ldots \\
+Specify the size of the image using height or width. Here, the command\ldots 
+
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
   \includegraphics[width = .9\textwidth]{imgs/specs-gen-vio-box.png}
 \end{lstlisting}
 \end{minipage}
-specifies that we want to go into the \lstinline{imgs} folder and include the image called \lstinline{attack-defense.pdf}. We specify the width to be 90 percent of the width of the text block, but we could have specified a width in inches or centimeters. The height is scaled automatically with the width.
+
+\ldots specifies that we want to include the image called \lstinline{attack-defense.pdf}, which is located in the \lstinline{imgs} folder. We specify the width to be 90 percent of the width of the text block, but we could have specified a width in inches or centimeters. The height is scaled automatically with the width.
 
 \includegraphics[width = .7\textwidth]{imgs/attack-defense.pdf}
 
@@ -806,7 +812,7 @@ Compare the following table created using ordinary {\LaTeX} and then \lstinline+
   Richard     & NA   & Comics, Wresting \\
   Jos\'e Luis & 7    & Comics, TV, Movies \\
   Mike        & 5    & NA \\
-  Micah       & 5    & American History \\
+  Micah       & 5    & Generalist \\
   Erin        & 4    & Science, Sports \\
   Jordan      & 4    & British History \\
   Rachel      & 6    & Sports, Music \\
@@ -827,7 +833,7 @@ Compare the following table created using ordinary {\LaTeX} and then \lstinline+
   Richard     & NA   & Comics, Wresting \\
   Jos\'e Luis & 7    & Comics, TV, Movies \\
   Mike        & 5    & NA \\
-  Micah       & 5    & American History \\
+  Micah       & 5    & Generalist \\
   Erin        & 4    & Science, Sports \\
   Jordan      & 4    & British History \\
   Rachel      & 6    & Sports, Music \\
@@ -1124,7 +1130,7 @@ You can also use various \lstinline+\dots+ commands for matrices, like with this
 
 \begin{itemize}
   \item The Comprehensive \TeX~Archive Network (\url{http://www.ctan.org}).  In particular see the `Not So Short' guide at \url{http://ctan.tug.org/tex-archive/info/lshort/english/lshort.pdf} with tons of information on beginning and advanced topics.
-  \item The {\LaTeX} Wikibook (\url{https://en.wikibooks.org/wiki/LaTeX}). This is how I (Michael DeCrescenzo) learned {\LaTeX}.
+  \item The {\LaTeX} Wikibook. This is how I (Michael DeCrescenzo) learned {\LaTeX}. \url{https://en.wikibooks.org/wiki/LaTeX}
   \item {\TeX} Exchange (\url{http://tex.stackexchange.com/}). This site collects user questions related to working with {\LaTeX}. Other users offer answers and can ``upvote'' the best answers. The large user base results in very high quality answers to both common and obscure questions. Don't be afraid to post a question if you're unable to figure out a given issue. 
   \item Crash Course in {\LaTeX} (\url{http://haptonstahl.org/latex/}). A very nice user-friendly website guide to {\LaTeX}, created by a Steve Haptonstahl, a (former) political methodologist.
   \item Google (\url{https://www.google.com/}). If all else fails (or, perhaps, before searching through pages and pages of documentation) just search for what you're looking for --- there will be a user group discussion or a guide posted somewhere that explains how to do it.

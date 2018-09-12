@@ -3,24 +3,26 @@
 % ---------------------------------------------
 
 \documentclass[12pt
-               % , final
+               % , final % turn on ``final'' to hide to-do bubbles
               ]{article}
 
 
 
 % --- type, text, math, in/out encoding -----------------------
-\usepackage{microtype}
 
-% minion pro loads textcomp, MnSymbol, amsmath
-% if you want to pass options, load them beforehand
-\usepackage[lf, mathtabular, minionint]{MinionPro} % serif familiy
-\usepackage{MyriadPro} % sans-serif family
-% \usepackage{zi4}
+% This section is kinda non-essential
+% These packages control typography, typeface, and input/output characters.
+% The inputenc and fontenc pkgs may be important for non-English text,
+%   but the rest are fluff.
 
-% if minion and/or myriad fail, load these
-% \usepackage{mathptmx} % serif = times (with math)
-% \usepackage{helvet} % sens-serif = helvetica clone
+\usepackage{microtype} % microtypographical things (not essential)
 
+% fonts: 
+\usepackage{mathptmx} % serif = times (with math fonts!)
+\usepackage{helvet}   % sans-serif = helvetica clone
+\usepackage{zi4}      % mono = inconsolata
+
+% if you write non-English or need special accent characters, load these
 \usepackage[utf8]{inputenc} % better interpretation of input characters
 \usepackage[T1]{fontenc}    % better output glyphs/behaviors
 
@@ -28,8 +30,15 @@
 % --- Margins and Spacing -----------------------
 
 \usepackage[margin = 1.25in]{geometry} %margins % ipad geometry is 4X3
-\usepackage{setspace}
-\usepackage{enumitem} % allows nosep option for compact lists
+\usepackage{setspace} % line spacing
+\usepackage{enumitem} % list settings
+  \setlist{noitemsep} % (no separation between list items)
+
+
+% --- math --------------------------------
+
+\usepackage{amsmath} % math functions
+\usepackage{amssymb} % math symbols
 
 
 % --- tables and figures -----------------------
@@ -44,7 +53,9 @@
 
 % --- document logic and utilities -----------------------
 
-% hyperlink options
+% ! not ``essential'' but handy enough to include
+
+% hyperlinks and link colors
 \usepackage{hyperref} 
 \hypersetup{colorlinks = true, 
             citecolor = black, linkcolor = violet, urlcolor = teal}
@@ -56,7 +67,8 @@
             textsize = footnotesize]{todonotes}
   \presetkeys{todonotes}{fancyline, color = violet!30}{}
 
-\usepackage{comment} % block comments
+% block comments
+\usepackage{comment}
 
 
 
@@ -64,36 +76,30 @@
 
 % --- References -----------------------
 
+% you will need to change the path to the bib file
 \usepackage[authordate, backend = biber]{biblatex-chicago}
-\addbibresource{/Users/michaeldecrescenzo/Dropbox/bib.bib}
+\addbibresource{path/to/bib.bib}
 
 
 
 % --- global title/section formatting -----------------------
 
-% \usepackage{titling}
-% we used to have title customization stuff but it's noisy
+% ! also non-essential
+% These are aesthetic tweaks to the abstract and section title design.
+% You may want to delete these if you don't like.
 
+% abstract settings
 \usepackage{abstract}
-\renewcommand{\abstractname}{}    % clear the title
-\renewcommand{\absnamepos}{empty} % originally center
+\renewcommand{\abstractname}{}    % abstractname replaced with NULL
+\renewcommand{\absnamepos}{empty} % removes the block where abstract would
+                                  %   have been placed, originally 'center'
 
-\usepackage[rm, small, sc]{titlesec}
-\titleformat*{\subsection}{\itshape}
-\titleformat*{\paragraph}{\itshape}
+% section title settings
+\usepackage[rm, small, sc]{titlesec} % titles are non-bold, small, caps
+\titleformat*{\subsection}{\itshape} % subsection titles are italic
+\titleformat*{\paragraph}{\itshape}  % paragraph titles are italic
 
 
-
-% --- user commands -----------------------
-
-% notes for figures
-\newcommand{\notes}[1]{\hfill \\
-% \raggedright 
-\small
-\emph{Notes:} #1}
-
-% input with unskip as one command
-\newcommand{\pull}[1]{\input{#1}\unskip}
 
 
 
@@ -118,16 +124,15 @@
 
 
 \begin{abstract}
-  Abstract for a paper about some stuff. We took away the abstract title because it isn't necessary. For the text block, we use microtype, wider margins than one-inch, 1.5x line spacing. Type styles use the Minion and Myriad families (which will probably fail on most computers, sike!), and a font identity that uses no bolding---the only text decoration is small capitals and italics. We don't need huge section titles either, so we shrink 'em.
+  This document contains a preamble with my commonly used document settings. Many of the packages for math, spacing, and floats might be considered ``essential'' for social science papers. However, there are some stylistic changes to the type design (the type family, microtypography, section title designs) that are not essential. The source code highlights non-essential changes, so you should \emph{read the source code carefully before using this preamble} and modify it as you see fit. Lastly, some document parameters are for ``home use'' rather than article submission. The margin size (1.5 inch) and line spacing (1.5x) probably will need to be changed to conform to a journal's submission guidelines.
 \end{abstract}
 
-\vspace{12pt}
 
 
 \onehalfspacing
 
 
-\section*{Introduction}
+\section{Introduction}
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -137,7 +142,7 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
-\subsection*{Elaboration on a finer point}
+\subsection{Elaboration on a finer point}
 
 Let's say we wanted to write some pretty math. Let's say we really thought item response theory (IRT) models were beautiful, and we were to write one flavor of IRT model:
 
@@ -149,7 +154,6 @@ Let's say we wanted to write some pretty math. Let's say we really thought item 
   \right] \\
   \theta_{i} &\sim \mathrm{Normal}\left(\bar{\theta}_{g[i]}, \sigma_{g[i]} \right)
 \end{align}
-
 
 
 \newpage

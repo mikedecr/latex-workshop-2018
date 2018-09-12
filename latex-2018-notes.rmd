@@ -35,15 +35,30 @@ Handout
   + table example
 
 
-Reiteration of philosophy
+Documents for future use
 
-- content control, not stylistic intervention
+- The preamble for the latex handout is fine, 
+  + contains plenty of good stuff
+  + read the preamble carefully for stuff that is non-essential
+- Or you could check out the `mgd-preamble` document
+
+
+Tips
+
+- philosophy of content control, not stylistic intervention
   + if intervention, make it global
   + avoid bloat
   + tex is verbose enough
 - workflow integration
   + statistical output (tables, figures)
   + save quantities (stats, p-values)
+  + bibliographies
+  + *this is the stuff that really matters*, so don't give up before you get here
+- Project-oriented workflow
+  + create a folder for a project
+  + that folder contains subfolders for data, code, writing
+  + naming conventions: dashes, lowercase, descriptive names
+  + set your project directory to the top of the project, go down to grab data, go down to save tables and figures into the writing folder
 
 
 Next week transition
@@ -57,9 +72,11 @@ Next week transition
 
 
 
+
+
 # Workflow contents
 
-- bibliographies
+- bibliographies (Google scholar button, dio2bib)
 - figures
 - tables
 - referenced quantities
