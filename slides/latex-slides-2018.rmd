@@ -19,7 +19,7 @@ output:
 
 class: center, middle, inverse, title-slide
 
-# $\mathrm{\LaTeX}$ Workshop
+# Welcome to $\mathrm{\LaTeX}$
 
 ### Michael DeCrescenzo
 
@@ -40,9 +40,9 @@ knitr::opts_chunk$set(eval = TRUE, echo = FALSE,
 library("xaringan")
 library("xaringanthemer")
 
-mono_accent(base_color = "#002b36",
+mono_light(base_color = "#002b36",
             link_color = "#2aa198",
-            header_font_google = google_font("Crimson Text"), 
+            header_font_google = google_font("Vollkorn"), 
             text_font_google = google_font("PT Sans"), 
             code_font_google = google_font("Inconsolata"), 
             code_inline_background_color    = "#F5F5F5", 
@@ -372,13 +372,11 @@ R package `tikzDevice`
 
 ---
 
+class: center
 
-
-## Agenda
+## Agenda: today
 
 --
-
-Today
 
 - Get up and running
 
@@ -386,18 +384,30 @@ Today
 
 - Figures, tables
 
---
+---
 
-Next week
+# Next week
 
+.pull-left[
+Normal stuff:
 
 - Bibliographies
+- Slides (Beamer)
+
+Enhanced stuff:
 
 - Workflow integration
 
-- Slides (Beamer)
+New stuff:
 
-- (NEW) R-Markdown (and Rmd-style slides)
+- RMarkdown 
+- Xaringan
+]
+
+.pull-right[
+<img src="img/indignation.png" width = 90%>
+]
+
 
 
 
