@@ -1,0 +1,25 @@
+
+\begin{table}[ht]
+\caption{Regressions predicting Pok\'emon HP}
+\begin{center}
+\begin{tabular}{l D{.}{.}{3.5} D{.}{.}{3.5} }
+\toprule
+ & \multicolumn{1}{c}{Restricted Model} & \multicolumn{1}{c}{Full Model} \\
+\midrule
+(Intercept) & 54.77^{***} & 40.77^{***} \\
+            & (2.26)      & (2.46)      \\
+Defense     & 0.20^{***}  & 0.06        \\
+            & (0.03)      & (0.03)      \\
+Attack      &             & 0.31^{***}  \\
+            &             & (0.03)      \\
+\midrule
+R$^2$       & 0.06        & 0.18        \\
+Adj. R$^2$  & 0.06        & 0.18        \\
+Num. obs.   & 800         & 800         \\
+RMSE        & 24.81       & 23.12       \\
+\bottomrule
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\label{tab:pm-regs}
+\end{center}
+\end{table}

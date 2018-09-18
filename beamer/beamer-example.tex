@@ -1,0 +1,156 @@
+\documentclass[10pt]{beamer}
+
+% document theme and colors
+\usetheme{Dresden}
+\usecolortheme{beaver}
+
+% suppress annoying navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+% References  
+\usepackage[authordate, backend = biber, labelnumber = false]{biblatex-chicago}
+\addbibresource{beamer/beamer-bib.bib}
+
+% Other typesetting
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{enumitem}
+  \setlist{noitemsep}
+
+
+% Math
+\usepackage{amsmath}
+
+% figures and tables
+\usepackage{graphicx, float} % input graphics, float parameters
+\usepackage{dcolumn} % decimal-aligned columns
+
+% Misc
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, 
+            linkcolor = red, 
+            citecolor = black, 
+            urlcolor = red}
+
+
+
+\begin{document}
+ 
+
+% note: the [t] indicator tells latex to top-align the text (vs center align)
+
+\begin{frame}[t]
+  \title{{\LaTeX} Workshop: Beamer}
+  \author{Michael DeCrescenzo \\ 
+          Political Science, UW--Madison}
+  \date{Updated \today}
+  \titlepage
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{What is Beamer?}
+    
+  \centering 
+
+  \only<1->{
+  Beamer is a system for making slideshows with {\LaTeX}. 
+
+  All of the benefits of {\LaTeX} (and much of the syntax) generally apply to Beamer, with huge exception.
+  }
+
+  \only<2->{
+  Beamer is uuuuugly.
+  }
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{What is different about Beamer?}
+    
+Document class: \verb+\documentclass{beamer}+
+
+Set theme and color theme (explore \href{https://mpetroff.net/files/beamer-theme-matrix/}{here}):
+\begin{verbatim}
+  \usetheme{Dresden}
+  \usecolortheme{beaver}
+\end{verbatim}
+
+The \texttt{frame} environment
+
+\texttt{only<a-b>} syntax
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]\frametitle{Frames $\neq$ Slides}
+
+  Put your content into the \texttt{frame} environment. Can give a frame a title using \verb+\frametitle{}+
+
+  Frame is divided into numbered \emph{slides}. You can set content to appear at certain slide numbers
+
+\end{frame}
+
+
+
+\begin{frame}[t]\frametitle{Slides within frames}
+    
+  This appears on the every slide.
+  
+  \only<2->{This appears slides two and onward}
+  
+  \only<3>{This appears only on slide 3, then disappears afterward}
+  
+  \only<4->{Slide 4 and beyond}
+  
+  \only<5->{\textbf{See how this works by consulting the source code!}}
+
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Slides within frames}
+    
+\begin{verbatim}
+ This appears on the every slide.
+  
+  \only<2->{This appears slides two and onward}
+  
+  \only<3>{This appears only on slide 3, 
+           then disappears afterward}
+  
+  \only<4->{Slide 4 and beyond}
+  
+  \only<5->{\textbf{See how this works 
+                    by consulting the source code!}}
+\end{verbatim}
+
+\end{frame}
+
+
+
+
+\begin{frame}\frametitle{Things to consider}
+    
+Sizing text, tables, figures (advice: no regression tables)
+
+Many preamble items work differently, or not at all
+
+Keep another ``template'' document
+
+RMarkdown is a ``Beamer killer''
+
+\end{frame}
+
+
+
+
+
+\end{document}
