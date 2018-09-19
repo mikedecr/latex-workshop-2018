@@ -21,7 +21,7 @@
 
 # packages
 
-# if you open R in the latex-workshop-2018 directory, 'here' finds .here file
+# if you open R in the latex-workshop-2018/workflow directory, 'here' finds .here file
 # read more: https://github.com/jennybc/here_here
 library("here")
 

@@ -26,16 +26,24 @@ The `.gitignore` and `readme` files are not essential for end-users. They are me
 
 Folders contain various documents. 
 
+
+
 ### Week 1
 
-- `intro-slides`: Introductory slideshow
 - `handout`: a detailed document describing many LaTeX commands
 - `mgd-template`: an empty document featuring many of my most-used packages and settings
 
-## Week 2
+### Week 2
 
 - `workflow`: A mock project directory discussing how to integrate LaTeX into a social science workflow, focusing on bibliographies and integration with statistical software and bibliographies
 - `tikz`: how to draw charts and game trees in LaTeX (using `tikz`)
-- `beamer`: making slideshows with LaTeX (meta)
+- `beamer`: making slideshows with LaTeX
 - `R-markdown`: similar to `workflow`, but with R-Markdown
 - `xaringan`: Rmd-based slideshows (IMO superior to Beamer)
+
+### Other folders
+
+These folders contain materials that help make the course materials, but they aren't *lessons* unto themselves, including
+
+- `data`, this just contains data
+- `code`, this just contains some R code
