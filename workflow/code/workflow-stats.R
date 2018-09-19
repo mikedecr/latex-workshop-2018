@@ -21,7 +21,8 @@
 
 # packages
 
-# if you open R in the latex-workshop-2018/workflow directory, 'here' finds .here file
+# if you open R in the latex-workshop-2018/workflow directory, 
+#   then 'here' pkg finds .here file
 # read more: https://github.com/jennybc/here_here
 library("here")
 
@@ -39,9 +40,9 @@ library("xtable")
 library("texreg")
 
 # create table and figs directory
-dir.create("workflow/tables")
-dir.create("workflow/graphics")
-dir.create("workflow/refs")
+dir.create("tex/tables")
+dir.create("tex/graphics")
+dir.create("tex/refs")
 
 
 
@@ -78,7 +79,7 @@ mean_stats_tab %>%
   print(booktabs = TRUE, dcolumn = TRUE, 
         include.rownames = FALSE,
         latex.environments = "center") %>%
-  write(here("workflow/tables/pokemon-stats.tex"))
+  write(here("tex/tables/pokemon-stats.tex"))
 
 # for more, uncomment
 # help(xtable)
@@ -106,7 +107,7 @@ starters %>%
          label = "tab:first-pm") %>%
   print(booktabs = TRUE, include.rownames = FALSE, 
         sanitize.colnames.function = identity) %>%
-  write(here("workflow/tables/first-pokemon.tex"))
+  write(here("tex/tables/first-pokemon.tex"))
 
 
 # --- regression table -----------------------
@@ -124,7 +125,7 @@ summary(atk_def_model)
 
 
 # create texreg table
-#   save to file in workflow/tables/
+#   save to file in tex/tables/
 texreg(list(def_model, atk_def_model),
        custom.model.names = c("Restricted Model", "Full Model"),
        caption.above = TRUE,
@@ -132,7 +133,7 @@ texreg(list(def_model, atk_def_model),
        label = "tab:pm-regs",
        dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
        float.pos = "ht",
-       file = here("workflow/tables/hp-regs.tex"))
+       file = here("tex/tables/hp-regs.tex"))
 
 
 
@@ -152,7 +153,7 @@ broom::tidy(type_mod, conf.int = TRUE) %>%
     coord_flip() +
     labs(y = "Type Effect on Defense (vs. \"Bug\" Type)", x = "Primary Type")
 
-ggsave(here("workflow/graphics/type-intercepts.pdf"), 
+ggsave(here("tex/graphics/type-intercepts.pdf"), 
        height = 4, width = 7, device = cairo_pdf)
 
 
@@ -167,14 +168,14 @@ diff_from_bug <- broom::tidy(type_mod) %>%
 
 # what is the coef on steel?
 filter(diff_from_bug, estimate == max(estimate)) %$%
-  write(round(estimate, 1), here("workflow/refs/steel-coef.tex"))
+  write(round(estimate, 1), here("tex/refs/steel-coef.tex"))
 
 
 # what's lower than bug?
 filter(diff_from_bug, estimate < 0)
 
 filter(diff_from_bug, estimate < 0) %$% {
- write(round(estimate, 1), here("workflow/refs/normal-coef.tex"))
- write(round(p.value, 3), here("workflow/refs/normal-p.tex"))
+ write(round(estimate, 1), here("tex/refs/normal-coef.tex"))
+ write(round(p.value, 3), here("tex/refs/normal-p.tex"))
 }
 
