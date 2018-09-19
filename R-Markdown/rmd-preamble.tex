@@ -1,0 +1,42 @@
+% ----------------------------------------------------
+%   a preamble file for use with R Markdown
+% ----------------------------------------------------
+
+% --- text and typography -----------------------
+
+% not actually sure that microtype works!
+\usepackage{microtype}   % microtypography
+
+\usepackage{mathptmx}     % times
+\usepackage[varqu]{zi4}   % mono font = inconsolata, w/ upright quotes
+
+% I'm not sure how well these two packages work either!
+\usepackage[utf8]{inputenc} % better interpretation of input characters
+\usepackage[T1]{fontenc}    % better output glyphs/behaviors
+
+
+% --- floats -----------------------
+\usepackage{booktabs}
+\usepackage{longtable} % for selective float-prevention
+
+
+
+% --- Title style -----------------------
+
+\usepackage{titling}
+
+% title field
+\pretitle{\begin{center} \LARGE}
+\posttitle{\par\end{center}\vskip 12pt}
+
+% author field
+\preauthor{\begin{center}\large}
+\postauthor{\\ \normalsize 
+            \emph{University of Wisconsin--Madison}
+            \par\end{center}}
+
+% date field
+\predate{\begin{center}\small}
+\postdate{\par\end{center}}
+
+

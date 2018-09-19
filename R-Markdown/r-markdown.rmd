@@ -1,0 +1,440 @@
+---
+# global document parameters
+title: "R Markdown for Social Science"
+author: "Michael DeCrescenzo"
+date: "September 19, 2018"
+abstract: "This document introduces R Markdown and describes its utility in a social science workflow. In additional to a conceptual introduction to R Markdown and its syntax, we also cover similar ground as we did with \\LaTeX, focusing on bibliographies and statistical software integration. In a separate folder we discuss Xaringan, a slideshow system built on R Markdown."
+bibliography: bib/rmd-bib.bib
+biblio-style: authoryear
+
+# specification of output
+# we use bookdown::pdf_document2 to cross-reference tables and figs
+output: 
+  bookdown::pdf_document2: 
+    toc: true
+    keep_tex: true
+    includes: 
+      in_header: rmd-preamble.tex
+    number_sections: true
+    highlight: kate
+    fig_caption: true
+    citation_package: biblatex
+
+# can control some latex-type things with the YAML front matter
+# it may be less cluttered if you control some of these options 
+#   in a preamble or template file instead
+fontsize: 12pt
+geometry: margin = 1.25in
+indent: true
+linkcolor: red 
+urlcolor: blue 
+citecolor: black
+---
+
+
+<!-- This code chunk sets some defaults for the entire document -->
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, 
+                      fig.align = "center", fig.path = 'figs/')
+```
+
+
+# What is R Markdown?
+
+R Markdown is a document format that combines the simple, pleasurable writing experience of *Markdown* with the technical capabilities of `R`. R Markdown files are saved with the file extension `.rmd`. 
+
+Install it using R:
+
+```{r install_rmd, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+## The `'R'` Component
+
+R Markdown integrates `R` code with your output document. Let's demonstrate with some commonly used data on automobiles.
+
+```{r demonstrate_rmd, fig.width = 4, fig.height = 4, collapse = FALSE}
+# summarize the first four columns in the dataset
+summary(mtcars[ , 1:4])
+
+# plot the relationship between mpg (y) and weight (x)
+plot(mpg ~ wt, data = mtcars,
+     xlab = "Car Weight (1000 lbs)", 
+     ylab = "Car Mileage",
+     las = 1)
+```
+
+This may seem unhelpful at first, but think about the \LaTeX\ workflow processes that we have already discussed. To pass a table from R to \LaTeX\, we must...
+
+- Create the table with R
+- Convert the table to \LaTeX
+- Save the table as a `.tex` file
+- Import the table into your main `paper.tex` file
+
+While powerful, there's no denying that this process has you juggling between programs, saving a number of auxiliary files, futzing with file pathways, and so on. A similar process exists for figures. 
+
+In R Markdown, however, you can write R code for tables and figures alongside the text of your paper. This allows you to include manage your R code and your output all in one file.
+
+
+
+## The *'Markdown'* Component
+
+\LaTeX\, for all its benefits, is an **ugly** language. It takes _a lot_ of code overhead to produce some simple text. If I were to write the previous sentence in \LaTeX\, I would write... 
+
+```latex
+{\LaTeX}, for all its benefits, is an \textbf{ugly} language. 
+It takes \emph{a lot} of code overhead to produce some simple text.
+```
+
+Notice how Markdown achieves similar formatting with slimmer syntax: 
+
+```markdown
+\LaTeX\, for all its benefits, is an **ugly** language. 
+It takes _a lot_ of code overhead to produce some simple text.
+```
+
+Markdown is a plain text markup format. It is most commonly used to write documents that are compiled to `HTML`, but it can be used for `PDF` as well. For our purposes, Markdown still allows you to control the *content* of the writing using a text markup style, but the markup syntax itself is less verbose and easier to write with. The following section has helpful links for learning about Markdown. 
+
+
+
+
+# How R Markdown works
+
+This section will walk through some basics of R Markdown. For your future reference: 
+
+- learn more about R Markdown on the [RStudio website](http://rmarkdown.rstudio.com). 
+- A comprehensive resource on the R Markdown ecosystem is the [bookdown](https://bookdown.org/yihui/rmarkdown/) web page by Yihui Xie (the primary developer).[^bookdown]
+
+[^bookdown]: I refer to "R Markdown ecosystem" as the set of packages that incorporate R Markdown in some capacity, which is large. This includes `bookdown` (a package for writing books with R Markdown), `blogdown` (a package for blogging), `xaringan` (for slideshows), and so on.
+
+
+
+## Header (YAML)
+
+R Markdown has a header, similar to a \LaTeX\ preamble, but it is controlled by the language `YAML`. YAML has a very minimal syntax for supplying values to variables. If we use **RStudio's** File menu to create a new R Markdown document, we get a YAML header that looks something like this.
+
+```yaml
+---
+title: "Title goes here"
+author: "Janet Authorwoman"
+date: "9/18/2018"
+output: pdf_document
+---
+```
+
+YAML headers are bracketed by two sets of `---`, comments are denoted by `#` symbols.
+
+The current file's YAML header is more complicated, because it takes some work to make a PDF created with R Markdown look better. Open up this document's source file to take a look. One important component is that we use an output format called `pdf_document2` which is located within the `bookdown` package for R. The reason why we use this is because it has enhanced capabilities for referencing tables and figures, so it's pretty important for our purposes. Install bookdown like so:
+
+```{r, eval = FALSE}
+install.packages("bookdown")
+```
+
+If you examine the source code, you will notice that some options are indented differently. That is because some variables operate globally, and others operate as sub-components of other options, so they are nested "within" other options. You see this most with the `output` variable in the current document.
+
+If we wanted, we could import a `.tex` file of preamble code to modify the final PDF document, or we could style the whole document according to a Pandoc template. 
+
+
+
+## Body (Markdown)
+
+Once the YAML header is complete (we close the second `---`), we can begin writing in Markdown. I won't exhaustively describe how Markdown syntax becomes there are a handful of helpful websites that can take care of the task. This one by [Adam Prichard](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is pretty good. You can also check the [R Markdown "Cheat Sheet"](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) and the [R Markdown "Reference Guide"](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), both by RStudio.
+
+
+
+
+## Code chunks
+
+R code can be included (and executed) using *code chunks*. A code chunk is set aside between two sets of triple backticks: ```` ``` ````. Let's say we enter the following into our `.rmd` file...
+
+````
+```{r chunk-demonstration}`r ''`
+x <- 1 + 1
+x
+```
+````
+
+In this chunk, we create an object called `x` and then ask R to print it. Here's what it looks like when we evaluate the chunk.
+
+```{r chunk-demonstration}
+x <- 1 + 1
+x
+```
+
+Here's how the chunk works. Within the curly brackets, we specify that the language is `R`, and we give the code chunk a name (in this case, the name is `chunk-demonstration`). Chunks don't need names, but they turn out to be useful for data caching and cross-referencing tables or figures. Within the curly brackets is where we would also place any *chunk options*, which control...
+
+- whether the code chunk is executed (`eval`),
+- whether the code is printed in the output document (option `echo`),
+- whether the results of the code chunk are displayed in the output document (`include`),
+- whether the results of the code should be saved in a cache (`cache`),
+- parameters of any outputted figures, and so on (`fig.width`, `fig.height`, `fig.cap` [caption]).
+
+For example, a chunk that is not executed (but is printed) would be given the option `eval = FALSE`:
+
+````
+```{r, eval = FALSE}`r ''`
+1 + 1
+```
+````
+
+Notice how the code below is printed but we don't see the results.
+
+```{r no_eval, eval = FALSE}
+1 + 1
+```
+
+Similarly, a chunk whose code is not printed, but whose results are printed, would be given the option `echo = FALSE`.
+
+````
+```{r, echo = FALSE}`r ''`
+names(mtcars)
+```
+````
+
+If we evaluate this code chunk, the results are printed even though the code is not. Notice:
+
+```{r no_echo, echo = FALSE}
+names(mtcars)
+```
+
+Read all about chunk options [here](https://yihui.name/knitr/options/#code-evaluation).
+
+
+
+## \LaTeX\ (Math and Beyond)
+
+Here's a weird thing. \LaTeX\ works in R Markdown. R Markdown provides many capabilities for text styling that are much less verbose than \LaTeX\ code, so that is convenient. But it is possible to use \LaTeX\ code to \emph{emphasize} or \textbf{embolden} some text.
+
+\LaTeX\ is less redundant for math, of course. We can do inline math ($y_{i} = \alpha + \beta x_{i}$) or display math:
+\begin{align} 
+  p\left(y_{i} = 1\right) &\sim \mathrm{Bernoulli}\left( \pi_{i} \right) \\[6pt] 
+  \log \left( \frac{\pi_{i}}{1 - \pi_{i}} \right) &= X_{i}\beta 
+\end{align}
+
+When you are compiling to PDF, R Markdown translates your `.rmd` file into a `.tex` file, so your math is created with actual \LaTeX\ code. When you are compiling to HTML, the system uses an online library called `MathJax` to typeset math. (I recommend researching MathJax if you want to create a blog that features any math.)
+
+
+
+
+
+## Compilation
+
+How does an R Markdown document get interpreted and built? Once you have an `.rmd` document file, here's the process (see also Figure&nbsp;\@ref(fig:healy-diagram)).
+
+- The `knitr` package (for R) processes any R code, creating a markdown file `.md`. During the "knitting" process, the code blocks are formatted, output files (tables and figures) are generated using R and saved.
+- `Pandoc`, a document conversation program that predates R Markdown, converts the Markdown file into your final output. Pandoc can create PDFs (by way of \LaTeX\), HTML documents, and even Microsoft Word documents.
+
+<!-- 
+The following code chunk includes a graphic.
+
+Markdown has its own syntax for including graphics, which is 
+  ![alt-text](image-url) 
+
+HOWEVER, the ordinary method has issues with captions and labels.
+Using the include_graphics() function within an R block lets us set a caption
+  (using the fig.cap argument)
+and it lets us interact with the image label 
+  (which is fig:chunk-name) 
+-->
+```{r healy-diagram, echo = FALSE, fig.cap = "A diagram of the R Markdown compilation process, by \\href{https://kieranhealy.org/resources/}{Kieran Healy}", out.width = '100%'}
+knitr::include_graphics("imgs/workflow-wide-tx.png")
+```
+
+The system is a little complex, but the developers of R Markdown have done a great job hiding the messy details from you. The main downside is debugging---it is sometimes unclear if you have a `knitr` problem, a `pandoc` problem, or what. 
+
+
+
+# Writing with R Markdown
+
+## Software
+
+As you write an R Markdown document, your text and your code can be sitting side-by-side. This can be difficult to decipher if your code editing software isn't very powerful.
+
+I recommend using **RStudio** to write with R Markdown, as it's designed with lots of helpful capabilities out of the box (including pre-formatted R Markdown documents, helpful keyboard shortcuts, easy graphical interface for "knitting" R Markdown documents, inline and instant output displays, Git capabilities, and so on).
+
+
+## Strategy
+
+One concern about R Markdown is that a document that contains R code and writing is just too much. How can I include all of my stats, *and* all of my writing in the same file? 
+
+Well... you wouldn't! It's okay to have some analysis lurking behind the scenes, as long as your project builds those files along the way. 
+
+For example, imagine a project where I need to clean data, run models, create tables and figures, and then do writing. I could keep everything but the results in `clean.R`, `models.R`, and `tables-and-figs.R`. I would then write my paper (`paper.rmd`), which could call each of those files as part of the building process.[^cache] 
+
+[^cache]: It would be smart to cache the results of each `.R` file, so I don't have to re-run every file each time I build my paper document.
+
+
+## When to use R Markdown
+
+R Markdown seems like it fills a strange niche, but it's useful for problem sets, short assignments, papers, and even dissertations. The R Markdown ecosystem contains packages for books and theses (`bookdown`), but also slide shows (`xaringan`), and even websites (`blogdown`).
+
+I use `xaringan` and `blogdown` regularly. All workshop slideshows you have seen from me have been built with `xaringan` (except for the Beamer demonstration). My own [personal website](https://mikedecr.github.io/) uses files that are created with `blogdown` (e.g. this [blog post](https://mikedecr.github.io/post/2018/05/30/reproducible-packages/)).
+
+
+
+# Content control with R Markdown
+
+## Examples using Pokémon data
+
+To demonstrate content control features, we will use the same Pokémon data as we did during the \LaTeX\ workflow demonstration. We will include R code along with the output to demonstrate the capabilities of R Markdown.
+
+Let's start by attaching packages and reading the data into R.
+
+```{r setup_packages, message = FALSE, cache = FALSE}
+# data wrangling packages
+library("here")
+library("magrittr")
+library("tidyverse")
+library("broom")
+
+# table pkgs
+library("knitr")
+library("texreg")
+
+# graphics 
+library("ggplot2")
+theme_set(theme_minimal())
+
+# read data
+pm <- read_csv(here("data/pokemon.csv"))
+```
+
+
+
+## Tables (with `kable`)
+
+The following code creates a table of means, just as we did in the \LaTeX\ workflow document. We will see the code and the resulting table.
+
+```{r stat_means}
+mean_stats_tab <- pm %>%
+  select(Generation, HP:Speed) %>%
+  group_by(Generation) %>%
+  summarize_all(mean) %>%
+  mutate_if(is.numeric, round) %>%
+  print()
+```
+
+Once we have this data frame, we can turn it into a table using the `knitr::kable()` (which is to say, the `kable()` function from the `knitr` package for R). The following code creates Table&nbsp;\@ref(tab:kable-means). The `booktabs` option controls whether the table is created using "booktabs" style.
+
+```{r kable-means}
+mean_stats_tab %>%
+  kable(caption = "Mean Pok\\'emon Stats",
+        booktabs = TRUE) 
+```
+
+In order to reference Table&nbsp;\@ref(tab:kable-means), the table needs a `\label{}`. It turns out that the label is created by naming the R chunk in your `.rmd` file. We are then able to reference the label using `\@ref(tab:chunk-label)`. I use non-breaking spaces when I type a Table or Figure name, which prevents "Table" and "1" from printing on different lines. In the code, this uses the non-breaking space HTML character (`&nbsp;`) which looks a little ugly but gets the job done. If you open the source code, you will see what I mean.
+
+
+
+In Table&nbsp;\@ref(tab:starters-tab), we recreate the text-only table.
+
+```{r starters-tab}
+# create a data frame of pokemon info
+starters <- 
+  data_frame(Species = c("Bulbasaur", "Squirtle", "Charmander"), 
+             Type = c("Grass", "Water", "Fire"), 
+             Weakness = c("Fire", "Grass", "Water"), 
+             `Gary Picks` = c("Charmander", "Bulbasaur", "Squirtle")) 
+
+# print using kable()
+starters %>%
+  kable(caption = "Choices for your first Pok\\'emon",
+        booktabs = TRUE)
+```
+
+
+In Table&nbsp;\@ref(tab:hp-regs), we show how to use the `texreg` package to print regression tables.
+
+```{r models}
+# estimate regressions
+def_model <- lm(HP ~ Defense, data = pm)
+atk_def_model <- lm(HP ~ Defense + Attack, data = pm)
+
+```
+
+```{r hp-tables, results = "asis"}
+# regression table
+texreg(list(def_model, atk_def_model),
+       custom.model.names = c("Restricted Model", "Full Model"),
+       caption.above = TRUE,
+       caption = "Regressions predicting Pok\\'emon HP",
+       label = "tab:hp-regs",
+       booktabs = TRUE, use.packages = FALSE,
+       float.pos = "ht")
+```
+
+
+## Figures
+
+We can also use R code chunks to include figures directly in our output. This is also great for reproducibility. 
+
+To demonstrate, we will plot the relationship between a Pokémon's attack points and its defense points. If some Pokémon are simply designed to be more capable than others, we might observe a positive relationship (Pokémon with high attack also have high defense). If the creators of Pokémon are interested in creating trade-offs between Pokémon traits, we might observe a negative relationship. The following code creates Figure&nbsp;\@ref(fig:atk-def).
+
+```{r atk-def, fig.cap = "Relationship between Pok\\'emon Attack and Defense points", fig.width = 4, fig.height = 3}
+# jittered points for clarity of data
+# add a diagonal reference line (abline)
+# fit the linear relationship
+ggplot(pm, aes(Attack, Defense)) +
+  geom_abline(color = "gray") +
+  geom_jitter(shape = 16, alpha = 0.2, width = 5, height = 5) +
+  geom_smooth(method = "lm", size = 0.75, 
+              color = "black", fill = "steelblue")
+```
+
+
+
+## Bibliographies
+
+Bibliographies can be especially confusing because there are so many ways they can go wrong---with the R Markdown side, the Pandoc side, the \LaTeX\ side, the YAML header, and so on. I spent a *long* time messing with the bibliography for this document---I may not have done the best job, but here is what I've got.
+
+The most necessary component, naturally, is your `.bib` file. The highest-level of your YAML matter can take a `bibliography` variable. In our case, we have a `bib` folder that contains the file `rmd-bib.bib`. The `bib` folder is in the same folder as our `.rmd` file, so we need to navigate *into that folder* in order to find out `.bib` file. 
+
+```
+bibliography: bib/rmd-bib.bib
+```
+
+Next, in order to create a bibliography in a \LaTeX\ PDF, we need a package to manage the bibliography. We have to place this option underneath the output header in our YAML, since it modifies the \LaTeX\ building process. We used `biblatex` for bibliographies before, so let's use it again here. 
+
+```
+output: 
+  bookdown::pdf_document2: 
+    citation_package: biblatex
+```
+
+Lastly, we can set some parameters about how citations are formatted. By default, `biblatex` uses a numerical citation system. Political science uses an author-year system though, so we should change it globally. 
+
+```
+biblio-style: authoryear
+```
+
+All of these options are visible in the document's YAML header.
+
+
+
+### Citations using Rmd's syntax
+
+R Markdown's citation syntax uses a combination of the `@` symbol, the cite key, and square brackets. 
+
+If I wanted to do an in-text citation of @Gelman2006significance, I would write `@Gelman2006significance`. 
+
+If I wanted to do a parenthetical citation [@Gelman2006significance], I would write `[@Gelman2006significance]`.
+
+If I wanted to cite this Gelman and Stern paper without the authors' names [-@Gelman2006significance], I could write `[-@Gelman2006significance]`.
+
+
+
+
+
+
+
+
+
+
+# Final words
+
+R Markdown is neat, but because it is a Frankenstein's monster of software, it can be cumbersome at times. While it does combine statistical output with your writing, you still sometimes have to manage other files (`.yml` if you want to hide YAML variables in a separate file, `.csl` files for citation styles, templates if you want to use templates...). 
+
+It can also be confusing to manage cached R data. Sometimes the data that gets used in one part of the file seem "out-of-order" due to caching of previous output (read more [here](https://yihui.name/en/2018/09/notebook-war/)). For this reason, I advocate doing your complex, heavy-lifting code in `.R` files, leaving only the final output to be created in your `.rmd` file. 
+
+
+# References
