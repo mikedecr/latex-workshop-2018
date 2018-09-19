@@ -30,8 +30,10 @@ Folders contain various documents.
 
 ### Week 1
 
-- `handout`: a detailed document describing many LaTeX commands
+- `intro-slides`: my slides from day 1. You don't really need to mess with these. 
+- `handout`: a detailed document describing many LaTeX commands. 
 - `mgd-template`: an empty document featuring many of my most-used packages and settings
+
 
 ### Week 2
 
@@ -40,10 +42,3 @@ Folders contain various documents.
 - `beamer`: making slideshows with LaTeX
 - `R-markdown`: similar to `workflow`, but with R-Markdown
 - `xaringan`: Rmd-based slideshows (IMO superior to Beamer)
-
-### Other folders
-
-These folders contain materials that help make the course materials, but they aren't *lessons* unto themselves, including
-
-- `data`, this just contains data
-- `code`, this just contains some R code
