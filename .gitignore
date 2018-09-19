@@ -263,3 +263,5 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 hide/
+
+R-Markdown/figs/

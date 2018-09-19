@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XARINGAN</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Michael DeCrescenzo" />
+    <meta name="date" content="2018-09-19" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# XARINGAN
+## Slideshows written with R Markdown
+### Michael DeCrescenzo
+### September 19, 2018
+
+---
+
+
+class: center, inverse, middle
+
+## This slideshow was created using R Markdown
+
+
+
+
+
+---
+
+
+## The gist
+
+--
+
+Slide breaks with `---`
+
+--
+
+Incremental slides with `--`
+
+--
+
+Text can be _styled_ using **Markdown**
+
+--
+
+`\(\mathrm{\LaTeX}\)` math: `\(y_i = \alpha + x_i \beta\)` 
+
+--
+
+Include R code and output:
+
+
+```r
+die &lt;- 1:6
+sample(die, 2, replace = TRUE)
+```
+
+```
+## [1] 6 6
+```
+
+
+
+
+
+---
+
+class: center, middle, inverse
+
+## Xaringan
+
+### Beamer killer (?)
+
+
+
+---
+
+class: middle, center
+
+
+### Install from Github
+
+
+```r
+devtools::install_github("yihui/xaringan")
+```
+
+### Read the documentation
+
+&lt;https://slides.yihui.name/xaringan/&gt;
+
+
+### Write an `.rmd` file
+
+Output format `xaringan::moon_reader`
+
+Easy customization using `xaringanthemer` R package
+
+
+---
+
+class: inverse, middle, center
+
+# How it works
+
+#### (It's kind of a hack)
+
+
+---
+
+class: middle, center
+
+1. `.rmd` file is compiled to `.html`
+
+2. Open file in web browser
+
+2. Page is styled by the `remark.js` library (online)
+
+1. Math is rendered by `MathJax`
+
+
+---
+
+class: center, middle, inverse
+
+# Isn't this great? 
+
+Control control (just like `\(\mathrm{\LaTeX}\)`)
+
+Nicer code (open the source file)
+
+Pretty slides
+
+
+
+---
+
+class: center, middle
+
+## Learn more online
+
+The online documentation (a Xarginan slideshow itself) is great
+
+Check out `xaringanthemer` package
+
+
+
+---
+
+class: center, middle, inverse
+
+### fin
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

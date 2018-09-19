@@ -29,6 +29,7 @@ library("here")
 library("magrittr")
 library("tidyverse")
 library("ggplot2")
+theme_set(theme_minimal())
 
 # models
 library("broom")
@@ -43,12 +44,6 @@ dir.create("workflow/graphics")
 dir.create("workflow/refs")
 
 
-# This is my personal, custom ggplot theme, 
-# imported from Github
-theme_url <- 
-  "https://raw.githubusercontent.com/mikedecr/theme-mgd/master/theme-mgd.R"
-source(theme_url)
-theme_set(theme_mgd())
 
 list.files("data")
 
@@ -95,7 +90,7 @@ mean_stats_tab %>%
 # create a data frame of pokemon info
 starters <- 
   data_frame(Pokemon = c("Bulbasaur", "Squirtle", "Charmander"), 
-             Type = c("Grass", "Fire", "Water"), 
+             Type = c("Grass", "Water", "Fire"), 
              Weakness = c("Fire", "Grass", "Water"), 
              `Gary Picks` = c("Charmander", "Bulbasaur", "Squirtle")) %>%
   print()
@@ -152,7 +147,7 @@ broom::tidy(type_mod, conf.int = TRUE) %>%
   mutate(term = str_replace(term, "`Type 1`", ""),
          term = fct_reorder(term, estimate)) %>%
   ggplot(aes(x = term, y = estimate)) +
-    geom_hline(yintercept = 0, color = mgray, size = 0.25) +
+    geom_hline(yintercept = 0, color = "gray", size = 0.5) +
     geom_pointrange(aes(ymin = conf.low, ymax = conf.high)) +
     coord_flip() +
     labs(y = "Type Effect on Defense (vs. \"Bug\" Type)", x = "Primary Type")
