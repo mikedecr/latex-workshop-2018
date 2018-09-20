@@ -42,7 +42,7 @@ Week 2
 - `xaringan`: Rmd-based slideshows (IMO superior to Beamer)
 
 
-### Moch "project" directories
+### Mock "project" directories
 
 This repository contains two simulated project directories in the `workflow` and `r-markdown` folders. Each "project" has its own data, analysis code, writing, bibliography files. They both use accomplish similar tasks and use similar analysis code, but the former is designed to demonstrate LaTeX while the latter is for demonstrating R Markdown. For the full *project experience*, execute any `.R` code before compiling `.tex` the written documents.
 
