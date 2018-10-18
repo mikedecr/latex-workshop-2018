@@ -359,7 +359,7 @@ texreg(list(def_model, atk_def_model),
        caption.above = TRUE,
        caption = "Regressions predicting Pok\\'emon HP",
        label = "tab:hp-regs",
-       booktabs = TRUE, use.packages = FALSE,
+       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
        float.pos = "ht")
 ```
 
