@@ -35,7 +35,7 @@ Week 1
 
 Week 2
 
-- `workflow`: A mock project directory discussing how to integrate LaTeX into a social science workflow, focusing on bibliographies and integration with statistical software and bibliographies
+- `workflow`: A mock project directory discussing how to integrate LaTeX into a social science workflow, focusing on integration with statistical software and bibliographies
 - `tikz`: how to draw charts and game trees in LaTeX (using `tikz`)
 - `beamer`: making slideshows with LaTeX
 - `R-markdown`: similar to `workflow`, but with R-Markdown
